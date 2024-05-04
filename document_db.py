@@ -1,36 +1,39 @@
 import sys
 from create.create import create
 
-def index():
-  print("Menú de opciones:")
-  print("1. Opción 1")
-  print("2. Opción 2")
-  print("3. Opción 3")
+def error():
+  print("error: no se especificó una operación (utilice -help para ayuda)")
 
+def help():
+  print(
+"""uso:  document_db.py <operación> [...]
+operaciones:
+    document_db.py -create <local_path>
+    document_db.py -search <"text">""")
 
 def main():
-  print(sys.argv)
-  if len(sys.argv) > 1:
-    # Para la creación de la estructura se utilizará el siguiente comando: python document_db.py -create <local_path>
-    if sys.argv[1] == '-create':
-      # verificar si hay path
-      if len(sys.argv) == 2:
-        print('falta <local_path>')
-        return
-      create(sys.argv[2])
-      print('OK')
-    #  Para la generación de consultas se utilizará el siguiente comando: python document_db.py -search <text>
-    elif sys.argv[1] == '-search':
-      # verificar si hay path
-      if len(sys.argv) == 2 or len(sys.argv) > 3:
-        print('falta <local_path>')
-        return
-      # search(sys.argv[2])
-      print('OK')
-    else:
-      index()
-  else:
-    index()
+  # cunado no se a agregado argumentos
+  if len(sys.argv) == 1:
+    return error()
+  # Para la creación de la estructura se utilizará el siguiente comando: python document_db.py -create <local_path>
+  if sys.argv[1] == '-create':
+    # verificar si hay path
+    if len(sys.argv) == 2 or len(sys.argv) > 3:
+      return error()
+    # llamar función
+    create(sys.argv[2])
+  #  Para la generación de consultas se utilizará el siguiente comando: python document_db.py -search <text>
+  elif sys.argv[1] == '-search':
+    # verificar si hay path
+    if len(sys.argv) == 2 or len(sys.argv) > 3:
+      return error()
+    # llamar función
+    # search(sys.argv[2])
+  # consulta
+  elif sys.argv[1] == '-help':
+    return help()
+  # default
+  return error()
 
 if __name__ == "__main__":
   main()
