@@ -1,8 +1,9 @@
 import sys
 from create.create import create
+from search.search import search
 
 def error():
-  print("error: no se especificó una operación (utilice -help para ayuda)")
+  print("error: no se especifique una operación (utilice -help para ayuda)")
 
 def help():
   print(
@@ -21,14 +22,14 @@ def main():
     if len(sys.argv) == 2 or len(sys.argv) > 3:
       return error()
     # llamar función
-    create(sys.argv[2])
+    return create(sys.argv[2])
   #  Para la generación de consultas se utilizará el siguiente comando: python document_db.py -search <text>
   elif sys.argv[1] == '-search':
     # verificar si hay path
     if len(sys.argv) == 2 or len(sys.argv) > 3:
       return error()
     # llamar función
-    # search(sys.argv[2])
+    return search(sys.argv[2])
   # consulta
   elif sys.argv[1] == '-help':
     return help()
