@@ -1,0 +1,7 @@
+class Document
+  path //directorio del documento
+  page //lista de paginas
+
+class Page
+  index //numero de pagina
+  trie //implementar la información

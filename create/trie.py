@@ -7,6 +7,7 @@ class TrieNode:
   children =  None 
   key =  None 
   isEndOfWord  = False
+  count = 0
 
 # insert(T,element) 
 #  Descripción:  insert un elemento en T, siendo T un  Trie. 
@@ -23,6 +24,7 @@ def _insertREC(node, element):
       if len(element) == 1:
         # establecer nodo final de la palabra
         node.children[i].isEndOfWord = True
+        node.children[i].count += 1
         return
       # eliminar primer carácter y llamar recursividad 
       elementAUX = element[1:]
@@ -55,6 +57,8 @@ def insert(T, element):
     T.root = TrieNode()
     T.root.children = []
     T.root.key = ''
+  # trasformar a minúscula
+  element = element.lower()
   # entrar a recursividad
   _insertREC(T.root, element)
 
@@ -252,6 +256,7 @@ def print_trie(root, indent=''):
     return
   if root.isEndOfWord:
     print(indent + root.key + '*')
+    print(root.count)
   else:
     print(indent + root.key)
   for child in root.children:

@@ -76,6 +76,7 @@ def read(local_path):
 
       # Itera sobre cada palabra e imprímela
       for palabra in palabras:
+        print(palabra)
         insert(page.trie, palabra)
       
       pageIndex = pageIndex + 1
