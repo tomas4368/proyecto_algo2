@@ -21,14 +21,14 @@ def main():
     if len(sys.argv) == 2 or len(sys.argv) > 3:
       return error()
     # llamar función
-    create(sys.argv[2])
+    return create(sys.argv[2])
   #  Para la generación de consultas se utilizará el siguiente comando: python document_db.py -search <text>
   elif sys.argv[1] == '-search':
     # verificar si hay path
     if len(sys.argv) == 2 or len(sys.argv) > 3:
       return error()
     # llamar función
-    # search(sys.argv[2])
+    # return search(sys.argv[2])
   # consulta
   elif sys.argv[1] == '-help':
     return help()

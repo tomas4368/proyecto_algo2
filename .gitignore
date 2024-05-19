@@ -1,1 +1,3 @@
 document/
+*.pkl
+__pycache__
