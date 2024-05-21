@@ -1,5 +1,6 @@
 class Trie:
   root = None
+  element = 0
 
 class TrieNode:
   parent = None
@@ -55,6 +56,8 @@ def insert(T,element):
     return
   #Trasformar a minúscula
   element = element.lower()
+  #Add count
+  T.element += 1
   return insertR(T.root,element,0)
 
 def search(T,element):
