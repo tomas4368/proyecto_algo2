@@ -37,3 +37,14 @@ def calcular_idf(documentos):
     for palabra in idf:
         idf[palabra] = math.log(num_docs / (1 + idf[palabra]))
     return idf
+
+def vectorizar(tf_idf_dict, terminos):
+    return [tf_idf_dict.get(termino, 0) for termino in terminos]
+
+def similitud_coseno(vector1, vector2):
+    dot_product = sum(vector1[i] * vector2[i] for i in range(len(vector1)))
+    magnitude1 = math.sqrt(sum(vector1[i] ** 2 for i in range(len(vector1))))
+    magnitude2 = math.sqrt(sum(vector2[i] ** 2 for i in range(len(vector2))))
+    if magnitude1 == 0 or magnitude2 == 0:
+        return 0.0 
+    return dot_product / (magnitude1 * magnitude2)
