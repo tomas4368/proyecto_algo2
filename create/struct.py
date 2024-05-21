@@ -32,8 +32,7 @@ class IDF:
           count += 1
       # add
       auxIDF = math.log(len(documentsTRIE)/count)
-      if auxIDF > 0:
-        self.diccionario[palabra] = {'IDF': auxIDF, 'docIndex': docIndex}
+      self.diccionario[palabra] = {'IDF': auxIDF, 'docIndex': docIndex}
   
   def search(self, palabra):
     # Trasformar a minúscula

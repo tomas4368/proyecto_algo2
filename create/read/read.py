@@ -1,6 +1,7 @@
 import PyPDF2
 
 from create.struct import Trie
+from function.clearSpecialCHAR import clearSpecialCHAR
 
 def read(files):
   #
@@ -28,12 +29,8 @@ def getData(localPatchFile, index):
       palabras = texto.split()
       # itera sobre cada palabra e inserta en trie de la pagina
       for palabra in palabras:
-        palabra = clear(palabra)
+        palabra = clearSpecialCHAR(palabra)
         if palabra != '':
           newDocument.agregar_palabra(palabra)
       #
     return newDocument
-
-# limpia y solo deja las letras
-def clear(string):
-  return ''.join([char for char in string if char.isalpha()])
