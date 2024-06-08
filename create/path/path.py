@@ -18,8 +18,10 @@ def getFile(localPath):
     # salir porque no hay pdf
     print(f"Error al listar el contenido de '{localPath}': No hay documentos *.pdf")
     exit(0)
-  # default
-  return _addLocalPatch(files, localPath)
+  # extraemos el directorio completo
+  files = _addLocalPatch(files, localPath)
+  # devolvemos lista con los directorios de todos los pdf
+  return files
 
 def _addLocalPatch(files, localPath):
   files_con_ruta = [os.path.join(localPath, file) for file in files]

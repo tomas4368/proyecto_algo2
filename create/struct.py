@@ -7,10 +7,6 @@ class TF:
     self.diccionario = {}
 
   def agregar_palabra(self, palabra, countElement, countElementRoot):
-    # Si la palabra no está en el diccionario, la agrega con la información de la página
-    if palabra not in self.diccionario:
-      self.diccionario[palabra] = (countElement/countElementRoot)
-    
     # Incrementa la frecuencia de la palabra
     self.diccionario[palabra] = (countElement/countElementRoot)
 
@@ -23,19 +19,20 @@ class IDF:
     # Si la palabra no está en el diccionario, la agrega con la información de la página
     if palabra not in self.diccionario:
       # buscar por documento
-      docIndex = []
+      id_doc = []
+      # cuenta la cantidad de documentos en los que aparece la palabra
       count = 0
       for docTRIE in documentsTRIE:
         # si existe la palabra
         if palabra in docTRIE.diccionario:
-          docIndex.append(docTRIE.index)
+          id_doc.append(docTRIE.id_doc)
           count += 1
       # add
       auxIDF = math.log(len(documentsTRIE)/count)
-      self.diccionario[palabra] = {'IDF': auxIDF, 'docIndex': docIndex}
+      self.diccionario[palabra] = {'IDF': auxIDF, 'id_doc': id_doc}
   
   def search(self, palabra):
-    # Trasformar a minúscula
+    # Transformar a minúscula
     palabra = palabra.lower()
     # Si la palabra no está en el diccionario, la agrega con la información de la página
     if palabra not in self.diccionario:
@@ -44,14 +41,14 @@ class IDF:
     return self.diccionario[palabra]
 
 class Trie:
-  def __init__(self, localPath, index):
+  def __init__(self, localPath, id_doc):
     self.localPath = localPath
     self.diccionario = {}
-    self.index = index
+    self.id_doc = id_doc
     self.element = 0
 
   def agregar_palabra(self, palabra):
-    # Trasformar a minúscula
+    # Transformar a minúscula
     palabra = palabra.lower()
     # Si la palabra no está en el diccionario, la agrega con la información de la página
     if palabra not in self.diccionario:

@@ -4,7 +4,7 @@ from search.print import printResult
 from search.struct import Search
 
 def search(text):
-  # separar en palabra el text
+  # separar en palabra el texto
   listTEXT = getList(text)
   # extraer db
   dataDB = getDB()
