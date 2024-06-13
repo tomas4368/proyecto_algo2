@@ -1,5 +1,5 @@
-from search.getDB import getDB
-from search.getList import getList
+from search.read import getDB
+from search.input import getList
 from search.print import printResult
 from search.struct import Search
 

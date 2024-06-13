@@ -1,6 +1,6 @@
 import sys
-from create.create import create
-from search.search import search
+from create.index import create
+from search.index import search
 
 def error():
   print("error: no se especificó una operación (utilice -help para ayuda)")
