@@ -1,4 +1,5 @@
 import math
+from function.clearSpecialCHAR import lista_sufijos, lista_stopwords
 
 class TF:
   def __init__(self, localPath):
@@ -50,6 +51,18 @@ class Trie:
   def agregar_palabra(self, palabra):
     # Transformar a minúscula
     palabra = palabra.lower()
+    if lista_stopwords.get(palabra):
+      return
+    if len(palabra) - 3 >= 9:
+        n = 9
+    else:
+      n = len(palabra) - 3
+      if n < 0:
+        n = 0
+    for i in range(n, 0, -1):
+      if lista_sufijos.get(palabra[-i:]):
+        palabra = palabra[:-i]
+        break
     # Si la palabra no está en el diccionario, la agrega con la información de la página
     if palabra not in self.diccionario:
       self.diccionario[palabra] = 0
@@ -62,3 +75,4 @@ class DATA:
   def __init__(self, idf, listTF):
     self.idf = idf
     self.listTF = listTF
+
